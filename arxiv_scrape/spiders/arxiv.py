@@ -56,7 +56,8 @@ class ArxivSpider(scrapy.Spider):
             item['title'] = check[0]
             item['authors'] = response.xpath("//div[@class='authors']/a/text()").extract()
             
-            temp = response.xpath('//*[@id="abs"]/div[2]/div[1]/h1/text()').extract()[0]
+            # temp = response.xpath('//*[@id="abs"]/div[2]/div[1]/h1/text()').extract()[0]
+            temp = response.xpath('//*[@id="abs-outer"]/div[1]/div[1]/h1/text()').extract()[0]
             if '>' in temp:
                 c= temp.split(' > ')[0]
                 item['category'] = c
@@ -65,7 +66,7 @@ class ArxivSpider(scrapy.Spider):
                 item['category'] = temp
                 
             item['Id'] = response.xpath('//span[@class="arxivid"]/a/text()').extract()[0]
-            item['link'] = "https://arxiv.org" + response.xpath('//*[@id="abs"]/div[1]/div[1]/ul/li[1]/a/@href').extract()[0] + ".pdf"
+            item['link'] = "https://arxiv.org" + response.xpath('//*[@id="abs-outer"]/div[2]/div[1]/ul/li[1]/a/@href').extract()[0] + ".pdf"
             item['abstract'] = response.xpath('//*[@id="abs"]/blockquote/text()').extract()
             item['date'] = response.xpath('//div[@class="submission-history"]/text()').extract()[-1].replace('\n','')
             item['primary_subject'] = response.xpath('//span[@class="primary-subject"]/text()').extract()[0]
@@ -125,7 +126,7 @@ class Arxiv2Spider(scrapy.Spider):
             item['title'] = check[0]
             item['authors'] = response.xpath("//div[@class='authors']/a/text()").extract()
             
-            temp = response.xpath('//*[@id="abs"]/div[2]/div[1]/h1/text()').extract()[0]
+            temp = response.xpath('//*[@id="abs-outer"]/div[1]/div[1]/h1/text()').extract()[0]
             if '>' in temp:
                 c= temp.split(' > ')[0]
                 item['category'] = c
@@ -134,7 +135,7 @@ class Arxiv2Spider(scrapy.Spider):
                 item['category'] = temp
                 
             item['Id'] = response.xpath('//span[@class="arxivid"]/a/text()').extract()[0]
-            item['link'] = "https://arxiv.org" + response.xpath('//*[@id="abs"]/div[1]/div[1]/ul/li[1]/a/@href').extract()[0] + ".pdf"
+            item['link'] = "https://arxiv.org" + response.xpath('//*[@id="abs-outer"]/div[2]/div[1]/ul/li[1]/a/@href').extract()[0] + ".pdf"
             item['abstract'] = response.xpath('//*[@id="abs"]/blockquote/text()').extract()
             item['date'] = response.xpath('//div[@class="submission-history"]/text()').extract()[-1].replace('\n','')
             item['primary_subject'] = response.xpath('//span[@class="primary-subject"]/text()').extract()[0]
