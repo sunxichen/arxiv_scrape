@@ -1,0 +1,13 @@
+setup.py
+arxiv_scrape/__init__.py
+arxiv_scrape/items.py
+arxiv_scrape/middlewares.py
+arxiv_scrape/pipelines.py
+arxiv_scrape/settings.py
+arxiv_scrape/spiders/__init__.py
+arxiv_scrape/spiders/arxiv.py
+project.egg-info/PKG-INFO
+project.egg-info/SOURCES.txt
+project.egg-info/dependency_links.txt
+project.egg-info/entry_points.txt
+project.egg-info/top_level.txt
